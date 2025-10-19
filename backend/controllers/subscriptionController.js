@@ -1,13 +1,11 @@
-// src/controllers/subscriptionController.js
 const Subscription = require('../models/subscriptionModel');
 const User = require('../models/userModel');
 
-// Get 
 // @desc    Create a new subscription for the logged-in user
 // @route   POST /api/subscriptions
 // @access  Private
 const createSubscription = async (req, res) => {
-  const { plan } = req.body; // e.g., '1-month', '3-month'
+  const { plan } = req.body;
 
   // Check if plan is valid
   const validPlans = ['1-month', '3-month', '6-month', '12-month'];
@@ -18,7 +16,7 @@ const createSubscription = async (req, res) => {
   // Check if user already has an active subscription
   const existingSubscription = await Subscription.findOne({ user: req.user._id, status: 'active' });
   if (existingSubscription) {
-      return res.status(400).json({ message: 'You already have an active subscription.' });
+    return res.status(400).json({ message: 'You already have an active subscription.' });
   }
 
   const startDate = new Date();
@@ -54,13 +52,14 @@ const createSubscription = async (req, res) => {
 // @route   GET /api/subscriptions/my
 // @access  Private
 const getMySubscription = async (req, res) => {
-  const subscription = await Subscription.findOne({ user: req.user._id, status: 'active' });
+  const subscription = await Subscription.findOne({ user: req.user._id, status: 'active' })
+    .populate('seatId');
 
   if (subscription) {
     const remainingDays = Math.ceil((subscription.endDate.getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24));
     res.json({
-        ...subscription.toObject(),
-        remainingDays: remainingDays > 0 ? remainingDays : 0,
+      ...subscription.toObject(),
+      remainingDays: remainingDays > 0 ? remainingDays : 0,
     });
   } else {
     res.status(404).json({ message: 'No active subscription found' });

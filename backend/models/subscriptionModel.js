@@ -15,6 +15,20 @@ const subscriptionSchema = new mongoose.Schema(
  paymentId: {
   type: String,
 },
+seatNumber: {
+   type: Number,
+   default:null,
+},
+seatId: {
+   type: mongoose.Schema.Types.ObjectId,
+   ref: 'Seat',
+   default: null,
+},
+gender: {
+   type: String,
+   enum: ['male', 'female'],
+   default: null
+},
  startDate: {
     type: Date,
     required: true,
@@ -35,4 +49,5 @@ const subscriptionSchema = new mongoose.Schema(
 );
 
 const Subscription = mongoose.model('Subscription', subscriptionSchema);
+
 module.exports = Subscription;

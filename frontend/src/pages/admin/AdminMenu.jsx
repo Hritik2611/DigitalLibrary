@@ -26,31 +26,10 @@ const AdminMenu = () => {
       </div>
       <nav className="flex-1 p-4">
         <ul className="space-y-3">
-          <li>
-            <Link 
-              to="/admin/dashboard" 
-              className="block p-2 rounded hover:bg-blue-50 hover:text-blue-600 transition-colors"
-            >
-              Dashboard
-            </Link>
-          </li>
-          <li>
-            <Link 
-              to="/admin/users" 
-              className="block p-2 rounded hover:bg-blue-50 hover:text-blue-600 transition-colors"
-            >
-              Users
-            </Link>
-          </li>
-          <li>
-            <Link 
-              to="/admin/subscriptions" 
-              className="block p-2 rounded hover:bg-blue-50 hover:text-blue-600 transition-colors"
-            >
-              Subscriptions
-            </Link>
-          </li>
-          {/* 🪑 SEAT MANAGEMENT LINK - THIS WAS MISSING */}
+          <li><Link to="/admin/dashboard" className="block p-2 rounded hover:bg-blue-50 hover:text-blue-600 transition-colors">Dashboard</Link></li>
+          <li><Link to="/admin/users" className="block p-2 rounded hover:bg-blue-50 hover:text-blue-600 transition-colors">Users</Link></li>
+          <li><Link to="/admin/subscriptions" className="block p-2 rounded hover:bg-blue-50 hover:text-blue-600 transition-colors">Subscriptions</Link></li>
+          {/* --- THIS IS THE LINK I'VE ADDED --- */}
           <li>
             <Link 
               to="/admin/seats" 
@@ -59,22 +38,8 @@ const AdminMenu = () => {
               🪑 Seat Management
             </Link>
           </li>
-          <li>
-            <Link 
-              to="/admin/payments" 
-              className="block p-2 rounded hover:bg-blue-50 hover:text-blue-600 transition-colors"
-            >
-              Payments
-            </Link>
-          </li>
-          <li>
-            <Link 
-              to="/admin/data" 
-              className="block p-2 rounded hover:bg-blue-50 hover:text-blue-600 transition-colors"
-            >
-              Data Controller
-            </Link>
-          </li>
+          <li><Link to="/admin/payments" className="block p-2 rounded hover:bg-blue-50 hover:text-blue-600 transition-colors">Payments</Link></li>
+          <li><Link to="/admin/data" className="block p-2 rounded hover:bg-blue-50 hover:text-blue-600 transition-colors">Data Controller</Link></li>
         </ul>
       </nav>
       <button
